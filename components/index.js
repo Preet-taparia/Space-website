@@ -14,7 +14,7 @@ import World from './World';
 import Insights from './Insights';
 import Feedback from './Feedback';
 import AboutISS from './AboutISS';
-import WhereISS from './WhereISS'
+import WhereISS from './WhereISS';
 
 export {
   Navbar,

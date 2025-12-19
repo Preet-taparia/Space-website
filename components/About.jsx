@@ -22,10 +22,10 @@ const About = () => (
         variants={fadeIn('up', 'tween', 0.2, 1)}
         className="mt-[8px] font-normal sm:text-[32px] text-[20px] text-center text-secondary-white"
       >
-        <span className="font-extrabold text-white">Space exploration</span> is a fascinating journey into the unknown, where you can experience the vastness of the universe as if you're really there. You can witness the beauty of distant galaxies, planets, and stars in this immersive{' '}
+        <span className="font-extrabold text-white">Space exploration</span> is a fascinating journey into the unknown, where you can experience the vastness of the universe as if you&apos;re really there. You can witness the beauty of distant galaxies, planets, and stars in this immersive{' '}
         <span className="font-extrabold text-white">Space Odyssey</span> of today, using only{' '}
         <span className="font-extrabold text-white">advanced technology</span> to explore the cosmos. 
-        Let's embark on this extraordinary adventure and{' '}
+        Let&apos;s embark on this extraordinary adventure and{' '}
         <span className="font-extrabold text-white">discover</span> the wonders of space by scrolling down.
       </motion.p>
 

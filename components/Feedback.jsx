@@ -24,7 +24,7 @@ const Feedback = () => (
           “Exploring the cosmos has opened up new frontiers and endless
           possibilities. With the advancements in space technology, we can now
           experience the wonders of the universe in ways we never thought
-          possible. Space exploration is not just about discovery, it's about
+          possible. Space exploration is not just about discovery, it&apos;s about
           expanding our horizons.”
         </p>
       </motion.div>

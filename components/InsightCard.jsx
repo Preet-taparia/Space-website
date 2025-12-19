@@ -1,11 +1,13 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { fadeIn } from '../utils/motion';
 
-const InsightCard = ({ imgUrl, title, subtitle, index }) => (
+const InsightCard = ({ imgUrl, title, subtitle, source, url, index }) => (
   <motion.div
     variants={fadeIn('up', 'spring', index * 0.5, 1)}
     initial="hidden"
-    animate="show"
+    whileInView="show"
     className="flex md:flex-row flex-col gap-4"
   >
     <img
@@ -15,6 +17,10 @@ const InsightCard = ({ imgUrl, title, subtitle, index }) => (
     />
     <div className="w-full flex justify-between items-center">
       <div className="flex-1 md:ml-[62px] flex flex-col max-w-[650px]">
+        <div className="font-normal text-[14px] text-secondary-white uppercase tracking-wider mb-2">
+          {source || 'Space Express'}
+        </div>
+        
         <h4 className="font-normal lg:text-[42px] text-[26px] text-white">
           {title}
         </h4>
@@ -22,11 +28,15 @@ const InsightCard = ({ imgUrl, title, subtitle, index }) => (
           {subtitle}
         </p>
       </div>
-      <div className="lg:flex hidden items-center justify-center w-[100px] h-[100px] rounded-full bg-transparent border-[1px] border-white">
+
+      <div
+        onClick={() => window.open(url, '_blank')}
+        className="lg:flex hidden items-center justify-center w-[100px] h-[100px] rounded-full bg-transparent border-[1px] border-white hover:bg-white hover:text-black transition-colors duration-300 cursor-pointer"
+      >
         <img
           src="/arrow.svg"
           alt="arrow"
-          className="w-[40%] h-[40%] object-contain"
+          className="w-[40%] h-[40%] object-contain filter hover:invert"
         />
       </div>
     </div>
