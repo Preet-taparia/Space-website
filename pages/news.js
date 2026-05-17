@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import axios from "axios";
+import { TypingText } from "../components";
 import Insights from "../components/Insights";
+import styles from "../styles";
+import { fadeIn } from "../utils/motion";
 
 const PAGE_LIMIT = 6;
 
@@ -40,7 +44,35 @@ const News = ({ initialInsights }) => {
   };
 
   return (
-    <div>
+    <div className="star-bg min-h-screen pt-28">
+      <div className={`${styles.innerWidth} mx-auto px-6`}>
+        <TypingText title="| The Space Express" textStyles="text-center" />
+        <h2 className="text-white text-center font-bold text-4xl sm:text-6xl mb-12">
+          Star Titan <span className="text-[#a509ff]">Commentary</span>
+        </h2>
+
+        {/* Creator Context Banner */}
+        <motion.div
+          variants={fadeIn('up', 'tween', 0.2, 1)}
+          initial="hidden"
+          whileInView="show"
+          className="glassmorphism p-8 mb-16 rounded-[32px] border-[#a509ff]/20 flex md:flex-row flex-col items-center gap-8"
+        >
+          <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-[#a509ff] to-[#34acc7] flex items-center justify-center text-4xl shadow-lg shrink-0">
+            🔭
+          </div>
+          <div>
+            <h3 className="text-white font-bold text-xl mb-2">Aaditya&apos;s Perspective</h3>
+            <p className="text-secondary-white text-sm leading-relaxed">
+              I follow these launches live from Jaipur. Here&apos;s my curated feed of the most important updates in aerospace. I often break these down in my &quot;Weekly Space Express&quot; videos on YouTube.
+            </p>
+            <a href="https://youtube.com/@StarTitan" target="_blank" className="inline-block mt-4 text-[#a509ff] text-sm font-bold uppercase tracking-widest">
+              Watch News Breakdowns &rarr;
+            </a>
+          </div>
+        </motion.div>
+      </div>
+
       <Insights insights={insights} />
       <div className="flex justify-center mb-16">
         <button

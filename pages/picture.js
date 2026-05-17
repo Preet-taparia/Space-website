@@ -2,7 +2,9 @@ import { useState, useEffect, useRef, useCallback, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
 import styles from "../styles";
-import { TitleText, TypingText } from "../components";
+import { TypingText, TitleText, ShortsGallery } from "../components";
+import { creatorGallery } from "../constants";
+import { fadeIn } from "../utils/motion";
 
 const ImageCard = memo(({ pic, onClick }) => {
   return (
@@ -59,7 +61,7 @@ const ImageModal = ({ selectedImage, onClose }) => {
         {/* Image Section */}
         <div className="w-full md:w-2/3 bg-black flex items-center justify-center">
           <img
-            src={selectedImage.hdurl}
+            src={selectedImage.hdurl || selectedImage.imgUrl}
             className="max-h-[50vh] md:max-h-[90vh] w-full object-contain"
             alt={selectedImage.title}
           />
@@ -70,7 +72,7 @@ const ImageModal = ({ selectedImage, onClose }) => {
           <div className="flex justify-between items-start mb-6">
             <div className="flex items-center gap-2">
               <span className="px-2 py-1 rounded bg-indigo-600 text-white text-xs font-bold">
-                {selectedImage.source}
+                {selectedImage.source || "Amateur Gear"}
               </span>
               <p className="text-xs text-gray-400">{selectedImage.date}</p>
             </div>
@@ -90,7 +92,7 @@ const ImageModal = ({ selectedImage, onClose }) => {
           </p>
 
           <a
-            href={selectedImage.hdurl}
+            href={selectedImage.hdurl || selectedImage.imgUrl}
             target="_blank"
             rel="noreferrer"
             className="block w-full text-center py-3 rounded-lg bg-white text-black font-bold hover:bg-gray-200 transition-colors"
@@ -133,8 +135,8 @@ const Picture = () => {
           source === "APOD"
             ? `apod-${item.date}`
             : source === "Mars"
-            ? `mars-${item.id}`
-            : `nasa-${item.data[0].nasa_id}`;
+              ? `mars-${item.id}`
+              : `nasa-${item.data[0].nasa_id}`;
 
         return {
           id: uniqueId,
@@ -142,32 +144,32 @@ const Picture = () => {
             source === "Mars"
               ? item.img_src
               : source === "APOD"
-              ? item.url
-              : item.links[0].href,
+                ? item.url
+                : item.links[0].href,
           hdurl:
             source === "Mars"
               ? item.img_src
               : source === "APOD"
-              ? item.hdurl || item.url
-              : item.links[0].href,
+                ? item.hdurl || item.url
+                : item.links[0].href,
           title:
             source === "Mars"
               ? `Mars Rover (${item.camera.name})`
               : source === "APOD"
-              ? item.title
-              : item.data[0].title,
+                ? item.title
+                : item.data[0].title,
           description:
             source === "Mars"
               ? `Captured by ${item.rover.name}`
               : source === "APOD"
-              ? item.explanation
-              : item.data[0].description,
+                ? item.explanation
+                : item.data[0].description,
           date:
             source === "Mars"
               ? item.earth_date
               : source === "APOD"
-              ? item.date
-              : item.data[0].date_created?.split("T")[0],
+                ? item.date
+                : item.data[0].date_created?.split("T")[0],
           source: source,
         };
       });
@@ -277,8 +279,65 @@ const Picture = () => {
         <TypingText title="| The Gallery" textStyles="text-center" />
         <TitleText
           title={<>Cosmic Perspectives</>}
-          textStyles="text-center mb-10"
+          textStyles="text-center mb-16"
         />
+
+        {/* STAR TITAN CAPTURES SECTION */}
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-8">
+            <h2 className="text-white font-bold text-3xl uppercase tracking-wider">
+              Captured by <span className="text-[#a509ff]">Star Titan</span>
+            </h2>
+            <div className="h-[2px] flex-1 bg-gradient-to-r from-[#a509ff]/50 to-transparent" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {creatorGallery.map((item, index) => (
+              <motion.div
+                key={item.id}
+                variants={fadeIn('up', 'spring', index * 0.1, 0.75)}
+                className="bg-white/5 backdrop-blur-md border border-[#a509ff]/30 rounded-[32px] overflow-hidden group cursor-pointer hover:border-[#a509ff] transition-all shadow-[0_0_20px_rgba(165,9,255,0.1)] hover:shadow-[0_0_30px_rgba(165,9,255,0.3)]"
+                onClick={() => setSelectedImage(item)}
+              >
+                <div className="relative h-[250px] overflow-hidden">
+                  <img
+                    src={item.imgUrl}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute top-4 right-4 bg-[#a509ff] text-white text-[10px] font-bold px-2 py-1 rounded-md uppercase">
+                    Amateur Gear
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-white font-bold text-lg leading-tight mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-secondary-white text-[12px] opacity-70 line-clamp-2">
+                    {item.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* FEED COMPARISON SECTION - Placeholder for Layered Evolution */}
+        <div className="mb-20 text-center glassmorphism p-12 rounded-[40px] border-[#a509ff]/20">
+          <h3 className="text-white text-2xl font-bold mb-4">NASA vs Star Titan</h3>
+          <p className="text-secondary-white max-w-[600px] mx-auto">
+            Comparing images taken from Earth with those from space observatories like Hubbble and JWST. Watch my full comparison video on YouTube to see how amateur gear stacks up.
+          </p>
+          <a href="https://youtube.com/@StarTitan" className="inline-block mt-6 text-[#a509ff] font-bold border-b border-[#a509ff] pb-1">Watch Comparison Engine &rarr;</a>
+        </div>
+        <ShortsGallery />
+
+        <div className="flex items-center gap-4 mb-8">
+          <h2 className="text-white font-bold text-3xl uppercase tracking-wider">
+            Real-time <span className="text-[#34acc7]">Space Flow</span>
+          </h2>
+          <div className="h-[2px] flex-1 bg-gradient-to-r from-[#34acc7]/50 to-transparent" />
+        </div>
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1 flex flex-col">
             {columns[0].map((pic) => (

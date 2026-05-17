@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { fadeIn } from "../utils/motion";
+import styles from "../styles";
 import Link from "next/link";
 
 const ExploreCard = ({
@@ -30,12 +31,12 @@ const ExploreCard = ({
         {title}
       </h3>
     ) : (
-      <div className="absolute bottom-0 p-8 w-full bg-[rgba(0,0,0,0.5)] rounded-b-[24px] ">
+      <div className={`absolute bottom-0 p-8 w-full flex-col bg-[rgba(0,0,0,0.7)] rounded-b-[24px] backdrop-blur-md border-t border-[#a509ff]/50 shadow-[0_-10px_40px_rgba(165,9,255,0.3)]`}>
         <Link href={`/${link}`}>
-          <h2 className="mt-[24px] font-semibold sm:text-[32px] text-[24px] text-white flex justify-end underline">
+          <h2 className="mt-[24px] font-semibold sm:text-[32px] text-[24px] text-white flex justify-between items-center group">
             {title}
+            <span className="text-[#a509ff] group-hover:translate-x-2 transition-transform">→</span>
           </h2>
-          
         </Link>
       </div>
     )}

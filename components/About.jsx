@@ -16,17 +16,13 @@ const About = () => (
       viewport={{ once: false, amount: 0.25 }}
       className={`${styles.innerWidth} mx-auto ${styles.flexCenter} flex-col`}
     >
-      <TypingText title="| About Space Odyssey" textStyles="text-center" />
+      <TypingText title="| About Aaditya" textStyles="text-center" />
 
       <motion.p
         variants={fadeIn('up', 'tween', 0.2, 1)}
         className="mt-[8px] font-normal sm:text-[32px] text-[20px] text-center text-secondary-white"
       >
-        <span className="font-extrabold text-white">Space exploration</span> is a fascinating journey into the unknown, where you can experience the vastness of the universe as if you&apos;re really there. You can witness the beauty of distant galaxies, planets, and stars in this immersive{' '}
-        <span className="font-extrabold text-white">Space Odyssey</span> of today, using only{' '}
-        <span className="font-extrabold text-white">advanced technology</span> to explore the cosmos. 
-        Let&apos;s embark on this extraordinary adventure and{' '}
-        <span className="font-extrabold text-white">discover</span> the wonders of space by scrolling down.
+        <span className="font-extrabold text-white">Hi, I am Aaditya</span> from Jaipur. Ever since I saw the Moon&apos;s craters through my first telescope, I knew <span className="font-extrabold text-white">Space is Love</span>. Through <span className="font-extrabold text-white">Star Titan</span>, I share my journey of capturing the cosmos from my rooftop. Whether you&apos;re a seasoned astronomer or just staring at the stars, let&apos;s explore this extraordinary adventure together.
       </motion.p>
 
       <motion.img

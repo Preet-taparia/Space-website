@@ -15,6 +15,11 @@ import Insights from './Insights';
 import Feedback from './Feedback';
 import AboutISS from './AboutISS';
 import WhereISS from './WhereISS';
+import YouTubeHub from './YouTubeHub';
+import GearSection from './GearSection';
+import CommunityBanner from './CommunityBanner';
+import ShortsGallery from './ShortsGallery';
+import CommunityHub from './CommunityHub';
 
 export {
   Navbar,
@@ -35,4 +40,9 @@ export {
   World,
   Insights,
   Feedback,
+  YouTubeHub,
+  GearSection,
+  CommunityBanner,
+  ShortsGallery,
+  CommunityHub,
 };
